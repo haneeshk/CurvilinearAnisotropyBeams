@@ -1,0 +1,194 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{epstopdf}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{breqn}
+
+\begin{document}
+\[
+\begin{bmatrix}
+\sigma_1 \\ \frac{\sigma_2^a+\sigma_2^b}{2} \\ \frac{\sigma_3^a+\sigma_3^b}{2}
+\\ \frac{\tau_3^a+\tau_3^b}{2} \\ \tau_2 \\ \tau_1
+\end{bmatrix}
+=
+\begin{bmatrix}
+d_{11}^e & d_{12}^e & d_{13}^e & d_{14}^e & d_{15}^e & d_{16}^e \\
+d_{12}^e & d_{22}^e & d_{23}^e & d_{24}^e & d_{25}^e & d_{26}^e \\
+d_{13}^e & d_{23}^e & d_{33}^e & d_{34}^e & d_{35}^e & d_{36}^e \\
+d_{14}^e & d_{24}^e & d_{34}^e & d_{44}^e & d_{45}^e & d_{46}^e \\
+d_{15}^e & d_{25}^e & d_{35}^e & d_{36}^e & d_{55}^e & d_{56}^e \\
+d_{16}^e & d_{26}^e & d_{36}^e & d_{46}^e & d_{56}^e & d_{66}^e 
+\end{bmatrix}
+\begin{bmatrix}
+\frac{\epsilon_1^a+\epsilon_1^b}{2} \\ \epsilon_2 \\ \epsilon_3 \\ \gamma_3\\ \frac{\gamma_2^a+\gamma_2^b}{2} \\ \frac{\gamma_1^a+\gamma_1^b}{2}
+\end{bmatrix}
+\]
+
+\[
+\begin{bmatrix}
+\sigma_1 \\ \sigma_2^a \\ \sigma_3^a \\ \tau_3^a \\ \tau_2 \\ \tau_1
+\end{bmatrix}
+=
+\begin{bmatrix}
+d_{11}^a & d_{12}^a & d_{13}^a & d_{14}^a & 0 & 0 \\
+d_{12}^a & d_{22}^a & d_{23}^a & d_{24}^a & 0 & 0 \\
+d_{13}^a & d_{23}^a & d_{33}^a & d_{34}^a & 0 & 0 \\
+d_{14}^a & d_{24}^a & d_{34}^a & d_{44}^a & 0 & 0 \\
+0 & 0 & 0 & 0 & d_{55}^a & d_{56}^a \\
+0 & 0 & 0 & 0 & d_{56}^a & d_{66}^a 
+\end{bmatrix}
+\begin{bmatrix}
+\epsilon_1^a \\ \epsilon_2 \\ \epsilon_3 \\ \gamma_3\\ \gamma_2^a \\ \gamma_1^a
+\end{bmatrix}
+\]
+
+\[
+\begin{bmatrix}
+\sigma_1 \\ \sigma_2^b \\ \sigma_3^b \\ \tau_3^b \\ \tau_2 \\ \tau_1
+\end{bmatrix}
+=
+\begin{bmatrix}
+d_{11}^b & d_{12}^b & d_{13}^b & d_{14}^b & 0 & 0 \\
+d_{12}^b & d_{22}^b & d_{23}^b & d_{24}^b & 0 & 0 \\
+d_{13}^b & d_{23}^b & d_{33}^b & d_{34}^b & 0 & 0 \\
+d_{14}^b & d_{24}^b & d_{34}^b & d_{44}^b & 0 & 0 \\
+0 & 0 & 0 & 0 & d_{55}^b & d_{56}^b \\
+0 & 0 & 0 & 0 & d_{56}^b & d_{66}^b 
+\end{bmatrix}
+\begin{bmatrix}
+\epsilon_1^b \\ \epsilon_2 \\ \epsilon_3 \\ \gamma_3\\ \gamma_2^b \\ \gamma_1^b
+\end{bmatrix}
+\]
+
+Expand out:
+\begin{subequations}
+\begin{align}
+2\sigma_1 & = d_{11}^e(\epsilon_1^a+\epsilon_1^b) + 2d_{12}^e\epsilon_2 + 2d_{13}^e\epsilon_3 + 2d_{14}^e\gamma_3 + d_{15}^e(\gamma_2^a+\gamma_2^b) + d_{16}^e(\gamma_1^a+\gamma_1^b)\\
+\sigma_1 & = d_{11}^a\epsilon_1^a + d_{12}^a\epsilon_2 + d_{13}^a\epsilon_3 + d_{14}^a\gamma_3 \\ 
+\sigma_1 & = d_{11}^b\epsilon_1^b + d_{12}^b\epsilon_2 + d_{13}^b\epsilon_3 + d_{14}^b\gamma_3 \\
+(\sigma_2^a+\sigma_2^b) & = d_{12}^e(\epsilon_1^a+\epsilon_1^b) + 2d_{22}^e\epsilon_2 + 2d_{23}^e\epsilon_3 + 2d_{24}^e\gamma_3 + d_{25}^e(\gamma_2^a+\gamma_2^b) + d_{26}^e(\gamma_1^a+\gamma_1^b)\\
+\sigma_2^a & = d_{12}^a\epsilon_1^a + d_{22}^a\epsilon_2 + d_{23}^a\epsilon_3 + d_{24}^a\gamma_3 \\ 
+\sigma_2^b & = d_{12}^b\epsilon_1^b + d_{22}^b\epsilon_2 + d_{23}^b\epsilon_3 + d_{24}^b\gamma_3 \\
+(\sigma_3^a+\sigma_3^b) & = d_{13}^e(\epsilon_1^a+\epsilon_1^b) + 2d_{23}^e\epsilon_2 + 2d_{33}^e\epsilon_3 + 2d_{34}^e\gamma_3 + d_{35}^e(\gamma_2^a+\gamma_2^b) + d_{36}^e(\gamma_1^a+\gamma_1^b)\\
+\sigma_3^a & = d_{13}^a\epsilon_1^a + d_{23}^a\epsilon_2 + d_{33}^a\epsilon_3 + d_{34}^a\gamma_3 \\ 
+\sigma_3^b & = d_{13}^b\epsilon_1^b + d_{23}^b\epsilon_2 + d_{33}^b\epsilon_3 + d_{34}^b\gamma_3 \\
+(\tau_3^a+\tau_3^b) & = d_{14}^e(\epsilon_1^a+\epsilon_1^b) + 2d_{24}^e\epsilon_2 + 2d_{34}^e\epsilon_3 + 2d_{44}^e\gamma_3 + d_{45}^e(\gamma_2^a+\gamma_2^b) + d_{46}^e(\gamma_1^a+\gamma_1^b)\\
+\tau_3^a & = d_{14}^a\epsilon_1^a + d_{24}^a\epsilon_2 + d_{34}^a\epsilon_3 + d_{44}^a\gamma_3 \\ 
+\tau_3^b & = d_{14}^b\epsilon_1^b + d_{24}^b\epsilon_2 + d_{34}^b\epsilon_3 + d_{44}^b\gamma_3 \\
+2\tau_2 & = d_{15}^e(\epsilon_1^a+\epsilon_1^b) + 2d_{25}^e\epsilon_2 + 2d_{35}^e\epsilon_3 + 2d_{45}^e\gamma_3 + d_{55}^e(\gamma_2^a+\gamma_2^b) + d_{56}^e(\gamma_1^a+\gamma_1^b)\\
+\tau_2 & = d_{55}^a\gamma_2^a + d_{56}^a\gamma_1^a \\ 
+\tau_2 & = d_{55}^b\gamma_2^b + d_{56}^b\gamma_1^b \\
+2\tau_1 & = d_{16}^e(\epsilon_1^a+\epsilon_1^b) + 2d_{26}^e\epsilon_2 + 2d_{36}^e\epsilon_3 + 2d_{46}^e\gamma_3 + d_{56}^e(\gamma_2^a+\gamma_2^b) + d_{66}^e(\gamma_1^a+\gamma_1^b)\\
+\tau_1 & = d_{56}^a\gamma_2^a + d_{66}^a\gamma_1^a \\ 
+\tau_1 & = d_{56}^b\gamma_2^b + d_{66}^b\gamma_1^b \\
+\end{align}
+\label{expand}
+\end{subequations}
+By eq.~\ref{expand}(b,c) we have
+\begin{equation}
+\epsilon_1^b = A\epsilon_1^a + B\epsilon_2 + C\epsilon_3 + D\gamma_3
+\label{s1}
+\end{equation}
+where $A=d_{11}^a/d_{11}^b$, $B=(d_{12}^a-d_{12}^b)/d_{11}^b$, $C=(d_{13}^a-d_{13}^b)/d_{11}^b$, $D=(d_{14}^a-d_{14}^b)/d_{11}^b$.
+
+By eq.~\ref{expand}(n,o,r,s) we have
+\begin{equation}
+\begin{bmatrix}
+    \gamma_2^a \\ \gamma_1^a 
+  \end{bmatrix}
+  = [N_1]^{-1}[N_2]
+  \begin{bmatrix}
+    \gamma_2^b \\ \gamma_1^b  
+  \end{bmatrix}
+  =[N]
+    \begin{bmatrix}
+      \gamma_2^b \\ \gamma_1^b  
+    \end{bmatrix}
+\label{s2}
+\end{equation}
+where 
+\begin{equation*}
+[N_1] = 
+	\begin{bmatrix}
+      d_{55}^a & d_{56}^a\\ d_{56}^a & d_{66}^a 
+    \end{bmatrix}
+    \quad
+[N_2] = 
+	\begin{bmatrix}
+      d_{55}^b & d_{56}^b\\ d_{56}^b & d_{66}^b 
+    \end{bmatrix}
+    \quad  
+[N] = \frac{1}{d_{55}^a d_{66}^a - (d_{56}^a)^2} 
+	\begin{bmatrix}
+     d_{55}^b d_{66}^a - d_{56}^a d_{56}^b &  d_{56}^b d_{66}^a - d_{56}^a d_{66}^b \\ 
+     d_{55}^a d_{56}^b - d_{55}^b d_{56}^a &  d_{55}^a d_{66}^b - d_{56}^a d_{56}^b 
+    \end{bmatrix}
+\end{equation*}
+
+Substitute eq.~\ref{s1}, eq.~\ref{s2}, and eqs.~\ref{expand}(b,c,e,f,h,i,k,l) into eqs.~\ref{expand}(a,d,g,j,m,p), we have
+\begin{subequations}
+\begin{align*}
+&(d_{11}^a+Ad_{11}^b)\epsilon_1^a + (d_{12}^a+d_{12}^b+Bd_{11}^b)\epsilon_2 + (d_{13}^a+d_{13}^b+Cd_{11}^b)\epsilon_3 + (d_{14}^a+d_{14}^b+Dd_{11}^b)\gamma_3 \\ & = (1+A)d_{11}^e\epsilon_1^a + (Bd_{11}^e+2d_{12}^e)\epsilon_2 + (Cd_{11}^e+2d_{13}^e)\epsilon_3 + (Dd_{11}^e+2d_{14}^e)\gamma_3 \\ & + [d_{15}^e(N_{11}+1)+N_{21}d_{16}^e]\gamma_2^b + [d_{16}^e(N_{22}+1)+N_{12}d_{15}^e]\gamma_2^b  \\
+\\
+&(d_{12}^a+Ad_{12}^b)\epsilon_1^a + (d_{22}^a+d_{22}^b+Bd_{12}^b)\epsilon_2 + (d_{23}^a+d_{23}^b+Cd_{12}^b)\epsilon_3 + (d_{24}^a+d_{24}^b+Dd_{12}^b)\gamma_3 \\ & = (1+A)d_{12}^e\epsilon_1^a + (Bd_{12}^e+2d_{22}^e)\epsilon_2 + (Cd_{12}^e+2d_{23}^e)\epsilon_3 + (Dd_{12}^e+2d_{24}^e)\gamma_3 \\ & + [d_{25}^e(N_{11}+1)+N_{21}d_{26}^e]\gamma_2^b + [d_{26}^e(N_{22}+1)+N_{12}d_{25}^e]\gamma_2^b  \\
+\\
+&(d_{13}^a+Ad_{13}^b)\epsilon_1^a + (d_{23}^a+d_{23}^b+Bd_{13}^b)\epsilon_2 + (d_{33}^a+d_{33}^b+Cd_{13}^b)\epsilon_3 + (d_{34}^a+d_{34}^b+Dd_{13}^b)\gamma_3 \\ & = (1+A)d_{13}^e\epsilon_1^a + (Bd_{13}^e+2d_{23}^e)\epsilon_2 + (Cd_{13}^e+2d_{33}^e)\epsilon_3 + (Dd_{13}^e+2d_{34}^e)\gamma_3 \\ & + [d_{35}^e(N_{11}+1)+N_{21}d_{36}^e]\gamma_2^b + [d_{36}^e(N_{22}+1)+N_{12}d_{35}^e]\gamma_2^b  \\
+\\
+&(d_{14}^a+Ad_{14}^b)\epsilon_1^a + (d_{24}^a+d_{24}^b+Bd_{14}^b)\epsilon_2 + (d_{34}^a+d_{34}^b+Cd_{14}^b)\epsilon_3 + (d_{44}^a+d_{44}^b+Dd_{43}^b)\gamma_3 \\ & = (1+A)d_{14}^e\epsilon_1^a + (Bd_{14}^e+2d_{24}^e)\epsilon_2 + (Cd_{14}^e+2d_{34}^e)\epsilon_3 + (Dd_{14}^e+2d_{44}^e)\gamma_3 \\ & + [d_{45}^e(N_{11}+1)+N_{21}d_{46}^e]\gamma_2^b + [d_{46}^e(N_{22}+1)+N_{12}d_{45}^e]\gamma_2^b  \\
+\\
+&[2d_{55}^b-d_{55}^e(N_{11}+1)-N_{21}d_{56}^e]\gamma_2^b + [2d_{56}^b-d_{56}^e(N_{22}+1)-N_{12}d_{55}^e]\gamma_1^b \\ & = d_{15}^e(1+A)\epsilon_1^a + (Bd_{15}^e+2d_{25}^e)\epsilon_2 + (Cd_{15}^e+2d_{35}^e)\epsilon_3 +(Dd_{15}^e+2d_{45}^e)\gamma_3 \\
+\\
+&[2d_{56}^b-d_{56}^e(N_{11}+1)-N_{21}d_{66}^e]\gamma_2^b + [2d_{66}^b-d_{66}^e(N_{22}+1)-N_{12}d_{56}^e]\gamma_1^b \\ & = d_{16}^e(1+A)\epsilon_1^a + (Bd_{16}^e+2d_{26}^e)\epsilon_2 + (Cd_{16}^e+2d_{36}^e)\epsilon_3 +(Dd_{16}^e+2d_{46}^e)\gamma_3 
+\end{align*}
+\end{subequations}
+
+Compare the coefficients of $\epsilon_1^a, \epsilon_2, \epsilon_3, \gamma_3, \gamma_2^b, \gamma_1^b$, we obtain
+\begin{subequations}
+\begin{align}
+d_{11}^e & = \frac{d_{11}^a+Ad_{11}^b}{1+A} \\
+d_{12}^e & = \frac{d_{12}^a+Ad_{12}^b}{1+A} = \frac{d_{12}^a+d_{12}^b+B(d_{11}^b-d_{11}^e)}{2}\\
+d_{13}^e & = \frac{d_{13}^a+Ad_{13}^b}{1+A} = \frac{d_{13}^a+d_{13}^b+C(d_{11}^b-d_{11}^e)}{2}\\
+d_{14}^e & = \frac{d_{14}^a+Ad_{14}^b}{1+A} = \frac{d_{14}^a+d_{14}^b+D(d_{11}^b-d_{11}^e)}{2}\\
+d_{22}^e & = \frac{d_{22}^a+d_{22}^b+B(d_{12}^b-d_{12}^e)}{2}\\
+d_{23}^e & = \frac{d_{23}^a+d_{23}^b+C(d_{12}^b-d_{12}^e)}{2} = 
+\frac{d_{23}^a+d_{23}^b+B(d_{13}^b-d_{13}^e)}{2} \\
+d_{24}^e & = \frac{d_{24}^a+d_{24}^b+D(d_{12}^b-d_{12}^e)}{2} = 
+\frac{d_{24}^a+d_{24}^b+B(d_{14}^b-d_{14}^e)}{2} \\
+d_{33}^e & = \frac{d_{33}^a+d_{33}^b+C(d_{13}^b-d_{13}^e)}{2}\\
+d_{34}^e & = \frac{d_{34}^a+d_{34}^b+D(d_{13}^b-d_{13}^e)}{2} = 
+\frac{d_{34}^a+d_{34}^b+C(d_{14}^b-d_{14}^e)}{2} \\
+d_{44}^e & = \frac{d_{44}^a+d_{44}^b+D(d_{14}^b-d_{14}^e)}{2}\\
+d_{55}^e & = 2\frac{d_{55}^a (d_{56}^b)^2+d_{55}^b[(d_{56}^a)^2-d_{55}^a(d_{66}^a+d_{66}^b)]}{(d_{56}^a+d_{56}^b)^2-(d_{55}^a+d_{55}^b)(d_{66}^a+d_{66}^b)} \\
+d_{56}^e & = \frac{2d_{56}^a d_{56}^b(d_{56}^a+d_{56}^b)-2d_{55}^a d_{56}^b d_{66}^a-2d_{55}^b d_{56}^a d_{66}^b }{(d_{56}^a+d_{56}^b)^2-(d_{55}^a+d_{55}^b)(d_{66}^a+d_{66}^b)} \\
+d_{66}^e & = 2\frac{d_{66}^a (d_{56}^b)^2+d_{66}^b[(d_{56}^a)^2-d_{66}^a(d_{55}^a+d_{55}^b)]}{(d_{56}^a+d_{56}^b)^2-(d_{55}^a+d_{55}^b)(d_{66}^a+d_{66}^b)}
+\end{align}
+\end{subequations}
+The other terms are zero. By simplification, we have
+\begin{subequations}
+\begin{align}
+d_{11}^e & = \frac{2d_{11}^a d_{11}^b}{d_{11}^a+d_{11}^b} \\
+d_{12}^e & = \frac{d_{11}^a d_{12}^b + d_{11}^b d_{12}^a}{d_{11}^a+d_{11}^b} \\
+d_{13}^e & = \frac{d_{11}^a d_{13}^b + d_{11}^b d_{13}^a}{d_{11}^a+d_{11}^b} \\
+d_{14}^e & = \frac{d_{11}^a d_{14}^b + d_{11}^b d_{14}^a}{d_{11}^a+d_{11}^b} \\
+d_{22}^e & = \frac{d_{22}^a+d_{22}^b}{2}\\
+d_{23}^e & = \frac{d_{12}^a(d_{13}^b-d_{13}^a)+d_{12}^b(d_{13}^a-d_{13}^b)+(d_{11}^a+d_{11}^b)(d_{23}^a+d_{23}^b)}{2(d_{11}^a+d_{11}^b)} \\
+d_{24}^e & = \frac{d_{12}^a(d_{14}^b-d_{14}^a)+d_{12}^b(d_{14}^a-d_{14}^b)+(d_{11}^a+d_{11}^b)(d_{24}^a+d_{24}^b)}{2(d_{11}^a+d_{11}^b)} \\
+d_{33}^e & = \frac{d_{33}^a+d_{33}^b}{2} \\
+d_{34}^e & = \frac{d_{13}^a(d_{14}^b-d_{14}^a)+d_{13}^b(d_{14}^a-d_{14}^b)+(d_{11}^a+d_{11}^b)(d_{34}^a+d_{34}^b)}{2(d_{11}^a+d_{11}^b)} \\
+d_{44}^e & = \frac{d_{44}^a+d_{44}^b}{2} \\
+d_{55}^e & = 2\frac{d_{55}^a (d_{56}^b)^2+d_{55}^b[(d_{56}^a)^2-d_{55}^a(d_{66}^a+d_{66}^b)]}{(d_{56}^a+d_{56}^b)^2-(d_{55}^a+d_{55}^b)(d_{66}^a+d_{66}^b)} \\
+d_{56}^e & = \frac{2d_{56}^a d_{56}^b(d_{56}^a+d_{56}^b)-2d_{55}^a d_{56}^b d_{66}^a-2d_{55}^b d_{56}^a d_{66}^b }{(d_{56}^a+d_{56}^b)^2-(d_{55}^a+d_{55}^b)(d_{66}^a+d_{66}^b)} \\
+d_{66}^e & = 2\frac{d_{66}^a (d_{56}^b)^2+d_{66}^b[(d_{56}^a)^2-d_{66}^a(d_{55}^a+d_{55}^b)]}{(d_{56}^a+d_{56}^b)^2-(d_{55}^a+d_{55}^b)(d_{66}^a+d_{66}^b)}
+\end{align}
+\end{subequations}
+
+\end{document}
